@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biswarup Mukherjee | Computer Vision and ML Engineer</title>
+<meta name="description" content="Biswarup Mukherjee, computer vision and machine learning engineer. Vision-language models on edge hardware, efficient inference and rigorous evaluation. MSc in AI for Computer Vision (Erasmus Mundus).">
+<meta property="og:title" content="Biswarup Mukherjee | Computer Vision and ML Engineer">
+<meta property="og:description" content="I build vision and vision-language systems that run on real hardware, and evaluate them rigorously.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F3F8FD">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Crect width='4' height='4' fill='%23fff'/%3E%3Crect width='2' height='2' fill='%2313294B'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%2313294B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   COLOURS AND SIZES: change the site's look here
+   ============================================================ */
+:root{
+  --paper:#F3F8FD;      /* page background (pale blue) */
+  --grid:rgba(36,89,201,.075); /* graph-paper lines (hero and diagrams only) */
+  --ink:#13294B;        /* main text (deep navy) */
+  --ink-2:#4C607E;      /* secondary text */
+  --line:#D3E0F0;       /* borders and dividers */
+  --accent:#2459C9;     /* links, bars */
+  --accent-soft:#E2ECFA;/* hover, light fills */
+  --mark:#C8325B;       /* alert markers */
+  --ok:#2F8F5B;         /* "available" */
+  --amber:#D8962A;      /* "in progress" */
+  --white:#FFFFFF;
+  --maxw:1100px;
+  --font:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{background:var(--accent-soft)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+ul{margin:0;padding:0}
+h2{font-size:1.75rem;letter-spacing:-.01em;margin:0 0 6px}
+h3{font-size:1.15rem;line-height:1.35;margin:0}
+h4{font-size:1rem;margin:0}
+.muted{color:var(--ink-2)}
+.kicker{font-size:14px;font-weight:500;color:var(--accent);margin:0 0 6px}
+.gridbg{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.i{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- navigation ---------- */
+.top{position:sticky;top:0;z-index:10;background:rgba(243,248,253,.93);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:56px}
+.brand{font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand:hover{background:none}
+.nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--ink-2);text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap;font-size:15px}
+.nav a:hover{color:var(--ink);background:var(--accent-soft)}
+.nav a.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent);border-radius:0}
+.nav a.cv{color:var(--accent);font-weight:500}
+
+/* ---------- hero (the only full-width graph-paper band) ---------- */
+.band{border-bottom:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:56px 24px 52px}
+.who{display:flex;align-items:center;gap:22px;margin-bottom:18px}
+.photo{width:116px;height:116px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--white);box-shadow:0 0 0 1px var(--line)}
+h1{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;letter-spacing:-.02em;margin:0}
+.role{margin:6px 0 0;font-size:1.1rem;color:var(--ink-2);font-weight:500}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin:0 0 16px}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.lede{font-size:clamp(1.1rem,1.8vw,1.25rem);line-height:1.5;max-width:44ch;margin:0 0 14px}
+.focus{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0 0 18px}
+.focus li{font-size:14px;font-weight:500;padding:3px 10px;border-radius:6px;background:var(--accent-soft);color:var(--ink)}
+.contact{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 22px;font-size:15px;color:var(--ink-2)}
+.contact li{display:flex;align-items:center;gap:7px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;background:var(--white)}
+.btn:hover{background:var(--accent-soft)}
+.btn.main{background:var(--ink);color:var(--white)}
+.btn.main:hover{background:#0c1d38}
+.board{margin:0}
+.board canvas{width:100%;aspect-ratio:560/460;display:block}
+.board p{margin:2px 0 0;font-size:13px;color:var(--ink-2);text-align:center}
+
+/* ---------- sections ---------- */
+section.block{padding:60px 0;border-bottom:1px solid var(--line)}
+.head{margin-bottom:28px}
+.head p{margin:0;max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font-size:13px;padding:2px 8px;border-radius:4px;background:var(--white);border:1px solid var(--line);color:var(--ink-2)}
+
+/* featured work */
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:28px}
+.card + .pair{margin-top:20px}
+.card h3{font-size:1.35rem}
+.card .sum{margin:6px 0 0;max-width:70ch}
+.diagram{margin:22px 0 0;border:1px solid var(--line);border-radius:10px;padding:14px 10px 8px;background-color:#F8FBFE}
+.diagram svg{display:block;width:100%;height:auto}
+.diagram .v{display:none}
+.diagram text{font-family:var(--font);fill:var(--ink)}
+.diagram .sub{fill:var(--ink-2);font-size:12.5px}
+.diagram .t{font-size:14.5px;font-weight:700}
+.diagram .badge{font-size:11.5px;font-weight:700;letter-spacing:.02em}
+.diagram .node{fill:var(--white);stroke:#B9CDE6;stroke-width:1.2}
+.diagram .alert{fill:#FBEFF3;stroke:var(--mark)}
+.diagram .flow{stroke:var(--accent);stroke-width:2;fill:none;stroke-dasharray:6 6;animation:flow 1.2s linear infinite}
+.diagram .phase{stroke:#9DB6D8;stroke-width:1;fill:none}
+.diagram .ph{font-size:12px;fill:var(--ink-2);font-weight:500}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 0;list-style:none}
+.metrics li{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--paper)}
+.metrics b{display:block;font-size:1.9rem;line-height:1.1;letter-spacing:-.02em}
+.metrics span{display:block;font-size:14px;color:var(--ink-2);margin-top:4px;line-height:1.35}
+.metrics.two{grid-template-columns:1fr 1fr}
+
+/* simple CSS bar charts */
+.chart{margin:20px 0 0}
+.chart h4{font-size:14px;font-weight:500;color:var(--ink-2);margin:0 0 8px}
+.bar{display:grid;grid-template-columns:172px 1fr 76px;align-items:center;gap:12px;margin:0 0 7px;font-size:14px}
+.bar .track{height:12px;background:var(--accent-soft);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:var(--v);background:var(--accent);border-radius:3px}
+.bar.ref i{background:#9DB6D8}
+.bar b{font-weight:500;text-align:right}
+.js .bar i{width:0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.js .chart.in .bar i{width:var(--v)}
+@media (prefers-reduced-motion:reduce){.js .bar i{transition:none}.diagram .flow{animation:none}html{scroll-behavior:auto}}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pair .card{display:flex;flex-direction:column}
+.pair .card h3{font-size:1.2rem}
+.pair .diagram{padding:10px}
+.pair .bar{grid-template-columns:128px 1fr 46px}
+
+details{margin-top:18px}
+summary{cursor:pointer;color:var(--accent);font-weight:500;font-size:15px;width:max-content;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";display:inline-block;width:1.1em;font-weight:700}
+details[open] summary::before{content:"\2212"}
+.notes{display:grid;grid-template-columns:140px 1fr;gap:6px 16px;margin:12px 0 0;padding:10px 0 4px 16px;border-left:2px solid var(--accent-soft);font-size:16px}
+.notes dt{font-weight:500}
+.notes dd{margin:0;color:var(--ink-2)}
+.more-link{margin-top:auto;padding-top:16px;font-size:15px;font-weight:500}
+
+/* experience */
+.job{display:grid;grid-template-columns:172px 1fr;gap:24px;padding:24px 0}
+.job + .job{border-top:1px dashed var(--line)}
+.when{color:var(--ink-2);font-size:15px;padding-top:2px}
+.org{color:var(--ink-2);margin:2px 0 0}
+.part{margin-top:16px}
+.part + .part{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line)}
+.part .brief{color:var(--ink-2);margin:2px 0 8px;font-size:16px}
+ul.results{padding-left:1.1em;max-width:72ch}
+ul.results li{margin:0 0 6px}
+ul.results li::marker{color:var(--accent)}
+.job .chart{max-width:620px}
+
+/* supporting projects: compact rows */
+.proj{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:16px 0;border-top:1px dashed var(--line)}
+.proj:first-of-type{border-top:0;padding-top:0}
+.proj p{margin:3px 0 0;max-width:72ch}
+.proj .kind{font-size:13px;color:var(--ink-2);font-weight:500;margin-left:8px}
+.links{display:flex;gap:14px;font-size:15px;white-space:nowrap;padding-top:2px}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--ink-2);font-weight:500}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mark)}
+.status.merged::before{background:var(--ok)}
+.status.wip::before{background:var(--amber)}
+
+/* open source */
+.oss{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.oss .meta{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:8px 0 12px;font-size:15px;color:var(--ink-2)}
+.oss p{margin:0 0 12px}
+
+/* what I work on */
+.areas{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;list-style:none}
+.areas li{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:18px}
+.areas p{margin:6px 0 0;font-size:15px;color:var(--ink-2);line-height:1.5}
+.tools{margin-top:22px}
+.tools h4{font-size:14px;font-weight:500;color:var(--ink-2);margin-bottom:6px}
+.tools .tags span{font-size:14px;color:var(--ink)}
+
+/* education */
+.edu-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.route{position:relative;padding:0;display:grid;grid-template-columns:repeat(3,1fr);margin:22px 0 26px;list-style:none}
+.route::before{content:"";position:absolute;left:8px;right:8px;top:30px;height:2px;background:var(--line)}
+.route li{position:relative;padding-top:48px;padding-right:10px}
+.route li::before{content:"";position:absolute;left:0;top:23px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.route li.now::before{background:var(--accent)}
+.route .yr{position:absolute;top:0;left:0;font-size:13px;color:var(--ink-2);font-weight:500}
+.route b{display:block;font-size:15px}
+.route span{display:block;font-size:14px;color:var(--ink-2);line-height:1.4}
+.awards{list-style:none}
+.awards li{margin:0 0 14px}
+.awards p{margin:2px 0 0;font-size:15px}
+
+footer{padding:48px 0 64px}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:14px}
+footer small{display:block;margin-top:26px;color:var(--ink-2)}
+
+/* ---------- small screens ---------- */
+@media (max-width:900px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .areas{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .wrap{padding:0 16px}
+  .hero{grid-template-columns:1fr;padding:32px 16px 28px;gap:16px}
+  .board{max-width:360px}
+  .photo{width:88px;height:88px}
+  .card{padding:20px}
+  .diagram .h{display:none}
+  .diagram .v{display:block;max-width:360px;margin:0 auto}
+  .pair,.oss,.edu-grid{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:2px}
+  .proj{grid-template-columns:1fr}
+  .notes{grid-template-columns:1fr;gap:0}
+  .notes dd{margin-bottom:8px}
+  .bar{grid-template-columns:110px 1fr 64px;gap:8px}
+  .brand{display:none}
+  .nav{margin-left:0;gap:0}
+  .nav a{padding:6px 7px;font-size:14px}
+  .nav a.hide-sm{display:none}
+}
+@media (max-width:480px){
+  .areas{grid-template-columns:1fr}
+  .route{grid-template-columns:1fr;gap:14px}
+  .route::before{left:7px;right:auto;top:8px;bottom:8px;width:2px;height:auto}
+  .route li{padding:0 0 0 30px}
+  .route li::before{top:3px}
+  .route .yr{position:static}
+}
+@media print{.top,.board,.actions{display:none}}
+/* split cards: text on the left, visual on the right */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.split .diagram{margin-top:0}
+.split .diagram .t{font-size:13px}
+.split .diagram .sub{font-size:11.5px}
+.stack > * + *{margin-top:20px}
+.card.sub-card h3{font-size:1.2rem}
+ul.points{padding-left:1.1em;margin:12px 0 0;max-width:62ch}
+ul.points li{margin:0 0 6px}
+ul.points li::marker{color:var(--accent)}
+.metrics.three{grid-template-columns:repeat(3,1fr)}
+.metrics.small li{padding:10px 14px}
+.metrics.small b{font-size:1.45rem}
+.finding{margin:14px 0 0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--paper);border-radius:0 8px 8px 0;font-size:16px;max-width:62ch}
+.caption{font-size:13px;color:var(--ink-2);margin:6px 0 0}
+.group{margin-top:34px}
+.group h3.label{font-size:1rem;color:var(--ink-2);font-weight:500;margin:0 0 6px}
+@media (max-width:820px){
+  .split{grid-template-columns:1fr;gap:20px}
+  .metrics.three{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Icons, defined once and reused -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2.5 2.5 0 0 1 5 0v4M12 10v7"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l8 4-8 4" fill="none" stroke="#2459C9" stroke-width="1.6"/></marker>
+  <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l8 4-8 4" fill="none" stroke="#C8325B" stroke-width="1.6"/></marker>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#intro">Biswarup Mukherjee</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a class="hide-sm" href="#open-source">Open source</a>
+      <a href="#skills">Skills</a>
+      <a class="hide-sm" href="#education">Education</a>
+      <!-- EDIT: upload your CV PDF next to this file with exactly this name -->
+      <a class="cv" href="Biswarup_Mukherjee_CV.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================ INTRO ============================
+     PHOTO: photo.jpg sits next to this file. If it is missing,
+     your GitHub avatar is shown instead.
+     ================================================================ -->
+<div class="band gridbg" id="intro">
+  <section class="hero wrap">
+    <div>
+      <div class="who">
+        <img class="photo" src="photo.jpg" width="116" height="116" alt="Biswarup Mukherjee"
+             onerror="this.onerror=null;this.src='https://avatars.githubusercontent.com/u/89087014?v=4'">
+        <div>
+          <h1>Biswarup Mukherjee</h1>
+          <p class="role">Computer Vision &amp; Machine Learning Engineer</p>
+        </div>
+      </div>
+      <p class="avail">Open to 6-month internships in 2027</p>
+      <p class="lede">I build vision and vision-language systems that run on real hardware, and evaluate them rigorously enough to trust in production.</p>
+      <ul class="focus"><li>Computer vision</li><li>Vision-language models</li><li>3D reconstruction</li><li>Edge AI</li></ul>
+      <ul class="contact">
+        <li><svg class="i"><use href="#i-mail"/></svg><a href="mailto:biswarup1208mukherjee@gmail.com">biswarup1208mukherjee@gmail.com</a></li>
+        <!-- To show your phone number, delete the two comment markers on the next line -->
+        <!-- <li><svg class="i"><use href="#i-phone"/></svg><a href="tel:+34625910206">+34 625 910 206</a></li> -->
+        <li><svg class="i"><use href="#i-pin"/></svg>Bordeaux, France</li>
+        <li><svg class="i"><use href="#i-in"/></svg><a href="https://www.linkedin.com/in/biswarup-m">LinkedIn</a></li>
+        <li><svg class="i"><use href="#i-code"/></svg><a href="https://github.com/BiswarupMukherjee1">GitHub</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn main" href="#work">View selected work</a>
+        <a class="btn" href="Biswarup_Mukherjee_CV.pdf"><svg class="i"><use href="#i-doc"/></svg>Download CV</a>
+      </div>
+    </div>
+    <figure class="board" aria-hidden="true">
+      <canvas id="board"></canvas>
+      <p id="board-hint">A camera calibration target. Move your pointer to tilt it.</p>
+    </figure>
+  </section>
+</div>
+
+<main>
+
+<!-- ============================ SELECTED WORK ============================ -->
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="head">
+      <h2>Selected work</h2>
+      <p class="muted">Edge deployment, 3D reconstruction and re-identification.</p>
+    </div>
+
+    <div class="stack">
+
+    <!-- Featured 1: Vaelsys x Intel -->
+    <article class="card">
+      <p class="kicker">Vaelsys, in partnership with Intel · 2026</p>
+      <h3>Edge AI for CCTV theft detection at EV charging stations</h3>
+      <p class="sum">A two-stage pipeline running entirely on one Intel Core Ultra machine: a lightweight detector watches every stream, and a vision-language model is called only when something looks relevant.</p>
+
+      <figure class="diagram gridbg" aria-label="Pipeline: camera streams, D-FINE detector on the NPU, Qwen3-VL embeddings on the integrated GPU, ML classifiers on the CPU, then an alert">
+        <svg class="h" viewBox="0 0 980 206" role="img">
+          <text class="ph" x="200" y="18">Phase 1: always on</text>
+          <path class="phase" d="M200 26h180"/>
+          <text class="ph" x="446" y="18">Phase 2: only when triggered</text>
+          <path class="phase" d="M446 26h416"/>
+          <g><title>Camera streams: 8 to 12 live feeds decoded in real time</title>
+            <rect class="node" x="8" y="48" width="148" height="84" rx="10"/>
+            <text class="t" x="22" y="84">Camera streams</text><text class="sub" x="22" y="106">8–12 live feeds</text></g>
+          <path class="flow" d="M158 90h34"/><path d="M186 84l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+          <g><title>D-FINE object detector on the NPU: checks for a person plus a vehicle or tool</title>
+            <rect class="node" x="200" y="48" width="180" height="84" rx="10"/>
+            <text class="t" x="216" y="84">D-FINE detector</text><text class="sub" x="216" y="106">person, vehicle, tool</text></g>
+          <text class="sub" x="392" y="80">trigger</text>
+          <path class="flow" d="M382 90h56"/><path d="M432 84l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+          <g><title>Qwen3-VL vision encoder on the integrated GPU via OpenVINO Model Server: one embedding per 5-second window</title>
+            <rect class="node" x="446" y="48" width="210" height="84" rx="10"/>
+            <text class="t" x="462" y="84">Qwen3-VL embeddings</text><text class="sub" x="462" y="106">5 s windows, pooled</text></g>
+          <path class="flow" d="M658 90h40"/><path d="M692 84l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+          <g><title>Lightweight ML classifiers: theft, anomaly and event class</title>
+            <rect class="node" x="700" y="48" width="162" height="84" rx="10"/>
+            <text class="t" x="716" y="84">ML classifiers</text><text class="sub" x="716" y="106">theft, anomaly, event</text></g>
+          <path class="flow" d="M864 90h28"/><path d="M886 84l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+          <rect class="node alert" x="898" y="70" width="76" height="40" rx="20"/><text class="t" x="915" y="95" style="fill:#C8325B">Alert</text>
+          <rect x="263" y="146" width="54" height="24" rx="5" fill="#E2ECFA"/><text x="276" y="163" class="badge">NPU</text>
+          <rect x="524" y="146" width="54" height="24" rx="5" fill="#E2ECFA"/><text x="535" y="163" class="badge">iGPU</text>
+          <rect x="754" y="146" width="54" height="24" rx="5" fill="#E2ECFA"/><text x="768" y="163" class="badge">CPU</text>
+          <text class="sub" x="10" y="196">Served through OpenVINO Model Server (gRPC) on Intel Core Ultra (Panther Lake). Hover a stage for detail.</text>
+        </svg>
+        <svg class="v" viewBox="0 0 340 470" role="img">
+          <rect class="node" x="56" y="10" width="216" height="60" rx="10"/><text class="t" x="70" y="36">Camera streams</text><text class="sub" x="70" y="56">8–12 live feeds</text>
+          <path class="flow" d="M164 72v24"/>
+          <rect class="node" x="56" y="100" width="216" height="60" rx="10"/><text class="t" x="70" y="126">D-FINE detector</text><text class="sub" x="70" y="146">person, vehicle, tool</text>
+          <rect x="284" y="118" width="48" height="22" rx="5" fill="#E2ECFA"/><text x="294" y="134" class="badge">NPU</text>
+          <text class="sub" x="174" y="182">trigger</text>
+          <path class="flow" d="M164 162v26"/>
+          <rect class="node" x="56" y="192" width="216" height="60" rx="10"/><text class="t" x="70" y="218">Qwen3-VL embeddings</text><text class="sub" x="70" y="238">5 s windows, pooled</text>
+          <rect x="284" y="210" width="48" height="22" rx="5" fill="#E2ECFA"/><text x="292" y="226" class="badge">iGPU</text>
+          <path class="flow" d="M164 254v26"/>
+          <rect class="node" x="56" y="284" width="216" height="60" rx="10"/><text class="t" x="70" y="310">ML classifiers</text><text class="sub" x="70" y="330">theft, anomaly, event</text>
+          <rect x="284" y="302" width="48" height="22" rx="5" fill="#E2ECFA"/><text x="294" y="318" class="badge">CPU</text>
+          <path class="flow" d="M164 346v26"/>
+          <rect class="node alert" x="114" y="376" width="100" height="40" rx="20"/><text class="t" x="142" y="401" style="fill:#C8325B">Alert</text>
+          <text class="sub" x="10" y="452">OpenVINO Model Server on Intel Core Ultra</text>
+        </svg>
+      </figure>
+
+      <ul class="metrics">
+        <li><b>95.7%</b><span>theft recall under group-aware cross-validation</span></li>
+        <li><b>4×</b><span>faster video encoder than Intel's reference</span></li>
+        <li><b>8–12</b><span>camera streams at 30 classifications per minute</span></li>
+        <li><b>12 → 19</b><span>clips per burst with split inference</span></li>
+      </ul>
+
+      <div class="chart">
+        <h4>Video-encoder latency per 8-frame batch (lower is better)</h4>
+        <div class="bar ref"><span>Intel reference</span><div class="track"><i style="--v:100%"></i></div><b>894 ms</b></div>
+        <div class="bar"><span>My implementation</span><div class="track"><i style="--v:24.8%"></i></div><b>222 ms</b></div>
+      </div>
+
+      <div class="tags"><span>OpenVINO</span><span>Qwen3-VL</span><span>INT8 quantisation</span><span>NPU + iGPU</span></div>
+
+      <details>
+        <summary>Technical case study</summary>
+        <dl class="notes">
+          <dt>Model choice</dt><dd>5+ VLMs benchmarked as frozen embedding extractors with 15 classifiers. The Qwen3-VL vision path gave the best balance of speed and recall.</dd>
+          <dt>Export</dt><dd>Standard tooling exports these models only as text generators, so I built OpenVINO embedding graphs for 4 architectures, each matched to PyTorch (cosine 1.000).</dd>
+          <dt>Quantisation</dt><dd>INT8 adopted where accuracy held. For Qwen3-VL it raised missed thefts from 1 to 9, so FP16 was kept; a centred-cosine check flagged this before the accuracy run.</dd>
+          <dt>Evaluation</dt><dd>Recording-level splits and nested cross-validation, so every score reflects recordings the model never saw.</dd>
+          <dt>Split inference</dt><dd>MiniCPM-V-4.5 encoded locally and decoded on a second machine from token embeddings only: burst capacity 12 → 19 clips within a 30 s deadline.</dd>
+          <dt>Zero-shot alerts</dt><dd>Conformal thresholds on text-matched scores: zero false alerts on held-out normal footage, with half of the theft recordings flagged.</dd>
+        </dl>
+      </details>
+    </article>
+
+    <!-- Featured 2: Gaussian Splatting research at LaBRI -->
+    <article class="card">
+      <div class="split">
+        <div>
+          <p class="kicker">Research, LaBRI, Université de Bordeaux · 2025–2026</p>
+          <h3>Sparse-view reconstruction with Gaussian Splatting</h3>
+          <p class="sum">Reconstructing a CT cross-section from 20 projections instead of the usual 1,000+, by optimising a set of 2D Gaussians through a differentiable projector.</p>
+          <ul class="points">
+            <li>Built the Gaussian Splatting pipeline from scratch: GPU projector with custom autograd, adaptive density control (clone, split, prune), TV regularisation and per-parameter learning-rate schedules, refined over 12 versions.</li>
+            <li>Added uncertainty-guided initialisation: a network predicts per-pixel uncertainty that decides where Gaussians start, adapting to each acquisition geometry with no manual tuning.</li>
+          </ul>
+        </div>
+        <figure class="diagram gridbg" aria-label="Optimisation loop: sparse views, uncertainty-guided initialisation, 2D Gaussians, GPU projector, loss against measured views, gradients back to the Gaussians, with density control">
+          <svg viewBox="0 0 540 290" role="img">
+            <rect class="node" x="10" y="14" width="140" height="56" rx="10"/><text class="t" x="24" y="38">Sparse views</text><text class="sub" x="24" y="58">20 projections</text>
+            <path d="M152 42h12" stroke="#2459C9" stroke-width="2" marker-end="url(#ah)"/>
+            <rect class="node" x="170" y="14" width="180" height="56" rx="10"/><text class="t" x="184" y="38">Uncertainty-guided</text><text class="sub" x="184" y="58">initialisation</text>
+            <path d="M260 72v28" stroke="#2459C9" stroke-width="2" marker-end="url(#ah)"/>
+            <rect class="node" x="170" y="106" width="180" height="56" rx="10" style="stroke:#2459C9;stroke-width:1.8"/><text class="t" x="184" y="130">2D Gaussians</text><text class="sub" x="184" y="150">position, shape, intensity</text>
+            <path class="flow" d="M352 134h20"/><path d="M368 128l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+            <rect class="node" x="380" y="106" width="150" height="56" rx="10"/><text class="t" x="394" y="130">Projector</text><text class="sub" x="394" y="150">differentiable, GPU</text>
+            <path class="flow" d="M455 164v34"/><path d="M449 192l6 8 6-8" fill="none" stroke="#2459C9" stroke-width="2"/>
+            <rect class="node" x="380" y="204" width="150" height="56" rx="10"/><text class="t" x="394" y="228">Loss</text><text class="sub" x="394" y="248">vs measured + TV</text>
+            <path class="flow" d="M378 232H260v-64"/><path d="M254 174l6-8 6 8" fill="none" stroke="#2459C9" stroke-width="2"/>
+            <text class="sub" x="270" y="224">gradients</text>
+            <rect class="node" x="10" y="106" width="140" height="56" rx="10"/><text class="t" x="24" y="130">Density control</text><text class="sub" x="24" y="150">clone, split, prune</text>
+            <path d="M152 126h12M166 142h-12" stroke="#2459C9" stroke-width="1.6" marker-end="url(#ah)"/>
+            <text class="sub" x="10" y="284">Optimised end to end in PyTorch, 8,000–12,000 Gaussians per image.</text>
+          </svg>
+        </figure>
+      </div>
+
+      <ul class="metrics three">
+        <li><b>20</b><span>projection views instead of 1,000+</span></li>
+        <li><b>27.9 dB</b><span>PSNR from 20 views on a real scan never seen in training</span></li>
+        <li><b>+8.3 dB</b><span>over standard initialisation in the limited-angle case</span></li>
+      </ul>
+
+      <div class="chart">
+        <h4>Limited-angle reconstruction, final PSNR on the unseen scan (scale 0 to 30 dB)</h4>
+        <div class="bar ref"><span>Standard initialisation</span><div class="track"><i style="--v:43.5%"></i></div><b>13.06 dB</b></div>
+        <div class="bar"><span>Uncertainty-guided</span><div class="track"><i style="--v:71.2%"></i></div><b>21.35 dB</b></div>
+      </div>
+
+      <div class="tags"><span>PyTorch</span><span>Gaussian Splatting</span><span>Differentiable rendering</span><span>Uncertainty</span></div>
+
+      <details>
+        <summary>Technical notes</summary>
+        <dl class="notes">
+          <dt>Density control</dt><dd>From iteration 500, every 100 steps: the top 5% of Gaussians by positional gradient are cloned or split by scale, faint ones pruned, population capped at 12,000.</dd>
+          <dt>Training stability</dt><dd>With uncertainty-guided starting positions, optimisation recovers after densification restructures the population; standard initialisation settles in a much worse solution.</dd>
+          <dt>Uncertainty</dt><dd>An evidential head predicts epistemic and aleatoric uncertainty in one forward pass. A simple ratio from that map predicted, before reconstruction, which geometries would benefit.</dd>
+          <dt>Regularisation</dt><dd>Geometry-specific TV weights chosen by sweep, adding 0.2–0.4 dB.</dd>
+          <dt>Next</dt><dd>3D Gaussians, physics-informed uncertainty and uncertainty-driven choice of the next view to acquire.</dd>
+        </dl>
+      </details>
+    </article>
+
+    <!-- Featured 3: re-identification -->
+    <article class="card">
+      <div class="split">
+        <div>
+          <p class="kicker">IEEE ICIP 2026 Grand Challenge · Top 5</p>
+          <h3>Urban object re-identification across camera views</h3>
+          <p class="sum">Matching the same street object, such as a bin or container, between a vehicle's forward- and backward-facing cameras, where viewpoint and appearance change completely.</p>
+          <ul class="points">
+            <li>Treated the camera change as a domain-adaptation problem: a domain-adversarial camera branch with gradient reversal, plus camera-balanced batches, so features describe the object rather than the camera.</li>
+            <li>Scaled a Part-Aware Transformer from ViT-B/16 to ViT-L/16 with external data (19.9K images) on a single 11 GB GPU, then added camera-aware re-ranking (CA-Jaccard) and checkpoint ensembling.</li>
+          </ul>
+        </div>
+        <figure class="diagram gridbg" aria-label="Method: camera-balanced batches into a ViT-L/16 backbone; a camera classifier with gradient reversal removes camera cues; camera-aware re-ranking produces ranked matches">
+          <svg viewBox="0 0 520 214" role="img">
+            <rect class="node" x="10" y="16" width="150" height="56" rx="10"/><text class="t" x="24" y="40">Balanced batches</text><text class="sub" x="24" y="60">both cameras per batch</text>
+            <path class="flow" d="M162 44h20"/><path d="M178 38l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+            <rect class="node" x="188" y="16" width="150" height="56" rx="10" style="stroke:#2459C9;stroke-width:1.8"/><text class="t" x="202" y="40">ViT-L/16 (PAT)</text><text class="sub" x="202" y="60">part-aware features</text>
+            <path class="flow" d="M340 44h20"/><path d="M356 38l8 6-8 6" fill="none" stroke="#2459C9" stroke-width="2"/>
+            <rect class="node" x="366" y="16" width="146" height="56" rx="10"/><text class="t" x="380" y="40">Re-ranking</text><text class="sub" x="380" y="60">camera-aware</text>
+            <path class="flow" d="M439 74v38"/><path d="M433 106l6 8 6-8" fill="none" stroke="#2459C9" stroke-width="2"/>
+            <rect class="node" x="366" y="118" width="146" height="56" rx="10"/><text class="t" x="380" y="142">Ranked matches</text><text class="sub" x="380" y="162">forward ↔ backward</text>
+            <path d="M248 74v44" stroke="#2459C9" stroke-width="2" marker-end="url(#ah)"/>
+            <path d="M278 118V78" stroke="#C8325B" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ahr)"/>
+            <rect class="node" x="188" y="122" width="150" height="56" rx="10"/><text class="t" x="202" y="146">Camera classifier</text><text class="sub" x="202" y="166">gradient reversal</text>
+            <text class="sub" x="190" y="102">features</text>
+            <text class="sub" x="286" y="96" style="fill:#C8325B">reversed</text><text class="sub" x="286" y="111" style="fill:#C8325B">gradient</text>
+            <text class="sub" x="10" y="200" style="fill:#C8325B">The reversed gradient removes camera-specific cues.</text>
+          </svg>
+        </figure>
+      </div>
+
+      <ul class="metrics three">
+        <li><b>Top 5</b><span>IEEE ICIP 2026 Grand Challenge</span></li>
+        <li><b>+72%</b><span>mAP over the PAT baseline (0.102 → 0.175)</span></li>
+        <li><b>19.9K</b><span>training images, one 11 GB GPU</span></li>
+      </ul>
+
+      <div class="tags"><span>Vision Transformer</span><span>Domain adaptation</span><span>Re-ranking</span></div>
+
+      <details>
+        <summary>Experiment progression</summary>
+        <div class="chart" style="max-width:640px">
+          <h4>mAP on the public leaderboard (scale 0 to 0.20)</h4>
+          <div class="bar ref"><span>PAT, ViT-B/16</span><div class="track"><i style="--v:51%"></i></div><b>0.102</b></div>
+          <div class="bar"><span>+ external data</span><div class="track"><i style="--v:60.5%"></i></div><b>0.121</b></div>
+          <div class="bar"><span>ViT-L/16</span><div class="track"><i style="--v:65%"></i></div><b>0.130</b></div>
+          <div class="bar"><span>+ adversarial branch</span><div class="track"><i style="--v:71.5%"></i></div><b>0.143</b></div>
+          <div class="bar"><span>+ balanced batches</span><div class="track"><i style="--v:78.5%"></i></div><b>0.157</b></div>
+          <div class="bar"><span>+ re-ranking, ensemble</span><div class="track"><i style="--v:87.5%"></i></div><b>0.175</b></div>
+        </div>
+        <a class="more-link" style="display:inline-block" href="https://github.com/BiswarupMukherjee1/UE-ReID-2026">Code and full experiment log</a>
+      </details>
+    </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXPERIENCE ============================ -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="head"><h2>Experience</h2></div>
+
+    <article class="job">
+      <div class="when">Jun – Aug 2026</div>
+      <div>
+        <h3>Computer Vision Engineer Intern, Vaelsys</h3>
+        <p class="org">In partnership with Intel</p>
+        <div class="part">
+          <h4>EV charging-station theft detection</h4>
+          <ul class="results" style="margin-top:6px">
+            <li>Built the edge pipeline shown in <a href="#work">Selected work</a>: 95.7% theft recall, encoder 4× faster than Intel's reference.</li>
+            <li>Contributed a fix to Hugging Face optimum-intel from this work (see <a href="#open-source">Open source</a>).</li>
+          </ul>
+        </div>
+        <div class="part">
+          <h4>Supermarket car-park action recognition, Mercadona</h4>
+          <p class="brief">Recognising customer actions in car-park CCTV without per-site training data.</p>
+          <ul class="results">
+            <li>Zero-shot recognition of 7 actions by matching Qwen3-VL video embeddings to text descriptions, with no labelled data.</li>
+            <li>Moved to the 2B model at equal accuracy, 3.6× cheaper per window.</li>
+          </ul>
+          <div class="chart">
+            <h4>Macro-F1 on 953 held-out windows (scale 0 to 1)</h4>
+            <div class="bar ref"><span>Few-shot, 21 clips</span><div class="track"><i style="--v:35.7%"></i></div><b>0.357</b></div>
+            <div class="bar"><span>Zero-shot, text only</span><div class="track"><i style="--v:52.5%"></i></div><b>0.525</b></div>
+          </div>
+          <div class="chart">
+            <h4>Seconds per window, same accuracy (lower is better)</h4>
+            <div class="bar ref"><span>Qwen3-VL 8B</span><div class="track"><i style="--v:100%"></i></div><b>6.99 s</b></div>
+            <div class="bar"><span>Qwen3-VL 2B</span><div class="track"><i style="--v:27.6%"></i></div><b>1.93 s</b></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Aug 2023 – Aug 2025</div>
+      <div>
+        <h3>Data Science Analyst, PepsiCo Global Business Services</h3>
+        <p class="org">Hyderabad, India</p>
+        <ul class="metrics three small" style="max-width:640px">
+          <li><b>$1M+</b><span>saved per year, Product Director's Award</span></li>
+          <li><b>46%</b><span>lower Databricks compute cost</span></li>
+          <li><b>21%</b><span>lower forecast error (MAE)</span></li>
+        </ul>
+        <ul class="results" style="margin-top:14px">
+          <li>Optimised Databricks job orchestration and cluster allocation for production forecasting pipelines.</li>
+          <li>Combined time-series foundation models (Chronos-Bolt, TimesFM 2.0) with P&amp;L covariates.</li>
+          <li>Built a shared forecasting library with Optuna tuning and SHAP explanations, used across teams: +24% forecast accuracy.</li>
+        </ul>
+        <div class="tags"><span>Databricks</span><span>PySpark</span><span>RAPIDS</span><span>Time series</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ PROJECTS ============================ -->
+<section class="block" id="projects">
+  <div class="wrap">
+    <div class="head"><h2>Projects</h2></div>
+
+    <div class="stack">
+    <!-- Highlighted project 1: spacecraft -->
+    <article class="card sub-card">
+      <div class="split">
+        <div>
+          <p class="kicker">Reliability under domain shift · 7 experiments</p>
+          <h3>Knowing when a spacecraft pose estimate is wrong</h3>
+          <p class="sum">An autonomously docking spacecraft needs more than a pose estimate: it needs to know how far to trust it. I tested whether the perception stage can flag its own errors at runtime, without ground truth, from classical features to DINOv2, through an EKF and a flight-processor budget.</p>
+          <ul class="metrics two small">
+            <li><b>≈2×</b><span>lower error with frozen DINOv2 than ResNet-18 on real imagery</span></li>
+            <li><b>8.88 → 3.07</b><span>EKF consistency (NEES) after correcting a measurement bias</span></li>
+          </ul>
+          <p class="finding">Key finding: common confidence signals, including Monte Carlo dropout, stay confident exactly where error grows across the synthetic-to-real gap, so runtime checks must be validated on real imagery.</p>
+        </div>
+        <div>
+          <figure class="diagram gridbg" aria-label="Schematic: spacecraft with true and predicted pose axes">
+            <svg viewBox="0 0 320 150" role="img">
+              <g stroke="#13294B" stroke-width="1.4" fill="#FFFFFF">
+                <rect x="138" y="58" width="44" height="36" rx="3"/>
+                <rect x="62" y="66" width="70" height="20"/><rect x="188" y="66" width="70" height="20"/>
+                <path d="M79.5 66v20M97 66v20M114.5 66v20M205.5 66v20M223 66v20M240.5 66v20" fill="none"/>
+              </g>
+              <g stroke-width="2.2" fill="none" stroke-linecap="round">
+                <path d="M160 76l52-26" stroke="#2459C9"/><path d="M160 76v-58" stroke="#2F8F5B"/><path d="M160 76l-34 44" stroke="#D8962A"/>
+                <g stroke-dasharray="4 4"><path d="M160 76l56-12" stroke="#2459C9"/><path d="M160 76l-12-56" stroke="#2F8F5B"/><path d="M160 76l-44 34" stroke="#D8962A"/></g>
+              </g>
+              <text class="sub" x="10" y="142" style="font-size:10px">solid: true pose</text><text class="sub" x="228" y="142" style="font-size:10px">dashed: predicted</text>
+            </svg>
+          </figure>
+          <div class="chart">
+            <h4>Median translation error on real hardware-in-the-loop images (scale 0 to 5 m)</h4>
+            <div class="bar ref"><span>ResNet-18</span><div class="track"><i style="--v:81%"></i></div><b>3.9–4.2</b></div>
+            <div class="bar"><span>DINOv2, frozen</span><div class="track"><i style="--v:37%"></i></div><b>1.6–2.1</b></div>
+          </div>
+          <div class="tags"><span>PyTorch</span><span>DINOv2</span><span>EKF</span><span>SPEED+</span></div>
+        </div>
+      </div>
+      <a class="more-link" style="display:inline-block" href="https://github.com/BiswarupMukherjee1/spacecraft-pose-failure-detection">Code, notebooks and report</a>
+    </article>
+
+    <!-- Highlighted project 2: GPU DBSCAN -->
+    <article class="card sub-card">
+      <div class="split">
+        <div>
+          <p class="kicker">Scalable multi-object tracking · GPU</p>
+          <h3>GPU pre-association for large-scale tracking</h3>
+          <p class="sum">Matching thousands of detections to tracks in real time is limited by optimal Hungarian assignment, which scales as O(N³). I used GPU DBSCAN (RAPIDS cuML) to split one large assignment into many small local ones, and measured where it pays off from 500 to 10,000 detections.</p>
+          <ul class="metrics three small">
+            <li><b>5.8×</b><span>faster at 10,000 detections</span></li>
+            <li><b>≈4,000</b><span>detections: break-even point</span></li>
+            <li><b>Higher</b><span>accuracy than global matching under moderate noise</span></li>
+          </ul>
+        </div>
+        <div>
+          <figure class="diagram gridbg" aria-label="Schematic: one large N by N assignment matrix split into small blocks along the diagonal">
+            <svg viewBox="0 0 320 160" role="img">
+              <rect x="14" y="14" width="110" height="110" fill="#E2ECFA" stroke="#9DB6D8"/>
+              <path d="M14 36h110M14 58h110M14 80h110M14 102h110M36 14v110M58 14v110M80 14v110M102 14v110" stroke="#C9D8EC"/>
+              <path d="M136 69h38" stroke="#2459C9" stroke-width="2" marker-end="url(#ah)"/>
+              <text class="sub" x="134" y="60" style="font-size:10px">DBSCAN</text>
+              <rect x="190" y="14" width="110" height="110" fill="#FFFFFF" stroke="#9DB6D8"/>
+              <rect x="190" y="14" width="34" height="34" fill="#2459C9" opacity=".85"/>
+              <rect x="224" y="48" width="24" height="24" fill="#2459C9" opacity=".85"/>
+              <rect x="248" y="72" width="30" height="30" fill="#2459C9" opacity=".85"/>
+              <rect x="278" y="102" width="22" height="22" fill="#2459C9" opacity=".85"/>
+              <text class="sub" x="14" y="146" style="font-size:11px">one N × N assignment</text>
+              <text class="sub" x="190" y="146" style="font-size:11px">small local assignments</text>
+            </svg>
+          </figure>
+          <div class="chart">
+            <h4>Runtime at 10,000 detections (lower is better)</h4>
+            <div class="bar ref"><span>Global Hungarian</span><div class="track"><i style="--v:100%"></i></div><b>0.83 s</b></div>
+            <div class="bar"><span>DBSCAN + local</span><div class="track"><i style="--v:17%"></i></div><b>0.14 s</b></div>
+          </div>
+          <div class="tags"><span>RAPIDS cuML</span><span>CUDA</span><span>Sensor fusion</span></div>
+        </div>
+      </div>
+      <a class="more-link" style="display:inline-block" href="https://github.com/BiswarupMukherjee1/GPU-Accelerated-DBSCAN-scalability-for-Large-Scale-Sensor-Fusion">Code and benchmarks</a>
+    </article>
+    </div>
+
+    <!-- Compact rows. To add one: copy a <div class="proj"> ... </div> block -->
+    <div class="group">
+      <h3 class="label">LLM and agent applications</h3>
+      <div class="proj">
+        <div>
+          <h3>RecycleRight Budapest</h3>
+          <p>Multi-agent app: vision-language models identify an item from a photo, a rules agent applies Budapest's recycling policy, and a third step estimates the CO₂ saved.</p>
+        </div>
+        <div class="links"><a href="https://huggingface.co/spaces/Biswarup1/recycleright-budapest">Live demo</a></div>
+      </div>
+      <div class="proj">
+        <div>
+          <h3>Employee onboarding assistant</h3>
+          <p>Voice and text assistant on AWS Bedrock agents, with Transcribe and Polly for speech.</p>
+        </div>
+        <div class="links"><a href="https://github.com/BiswarupMukherjee1/Onboarding-AI-Assistant">Code</a><a href="https://youtu.be/RX4efKfsTMM">Video</a></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h3 class="label">Earlier work</h3>
+      <div class="proj">
+        <div>
+          <h3>Out-of-stock detection on retail shelves<span class="kind">B.Tech thesis</span></h3>
+          <p>YOLOv5 with CBAM attention and Ghost convolutions on 3,000 annotated images: mAP 98.3% with 27% fewer parameters.</p>
+        </div>
+        <div class="links"><a href="https://github.com/BiswarupMukherjee1/Out-Of-Stock-Detection-Deep-Learning">Code</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ OPEN SOURCE ============================
+     When the PR is merged you can add: <span class="status merged">Merged</span>
+     inside the "meta" line below.
+     ==================================================================== -->
+<section class="block" id="open-source">
+  <div class="wrap">
+    <div class="head"><h2>Open source</h2></div>
+    <div class="card oss">
+      <div>
+        <p class="kicker">Hugging Face optimum-intel</p>
+        <h3>MiniCPM-V-4.5 3D-Resampler temporal grouping in OpenVINO</h3>
+        <div class="meta"><span>Pull request #1962</span></div>
+        <p>MiniCPM-V-4.5 compresses groups of consecutive video frames into one shared set of 64 tokens. The OpenVINO path produced a group per frame instead, so the model received a different input layout from the one it was trained on.</p>
+        <p>The fix folds the grouping in on the host side with no change to the exported graph: already-exported models work as they are, image inputs stay bit-identical, and output matches the reference implementation (cosine 1.000000).</p>
+        <a class="btn" href="https://github.com/huggingface/optimum-intel/pull/1962">View pull request <svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="chart" style="margin:0">
+        <h4>Vision tokens for a 6-frame clip in 2 temporal groups</h4>
+        <div class="bar ref"><span>Before the fix</span><div class="track"><i style="--v:100%"></i></div><b>384</b></div>
+        <div class="bar"><span>After, as reference</span><div class="track"><i style="--v:33.3%"></i></div><b>128</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SKILLS ============================ -->
+<section class="block" id="skills">
+  <div class="wrap">
+    <div class="head"><h2>What I work on</h2></div>
+    <ul class="areas">
+      <li><h4>Computer vision</h4><p>Detection, tracking, re-identification, Gaussian Splatting reconstruction</p></li>
+      <li><h4>Multimodal AI</h4><p>VLM embeddings, zero-shot recognition, vision-text matching, LLM agents</p></li>
+      <li><h4>Efficient AI</h4><p>OpenVINO, quantisation, NPU and GPU inference, model serving</p></li>
+      <li><h4>Reliable AI</h4><p>Evaluation design, uncertainty estimation, calibration, domain shift</p></li>
+    </ul>
+    <div class="tools">
+      <h4>Tools</h4>
+      <div class="tags"><span>Python</span><span>PyTorch</span><span>Hugging Face</span><span>OpenCV</span><span>OpenVINO</span><span>DL Streamer</span><span>CUDA</span><span>RAPIDS</span><span>scikit-learn</span><span>Docker</span><span>Git</span><span>MLflow</span><span>Databricks</span><span>AWS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EDUCATION AND AWARDS ============================
+     The route below shows the Erasmus Mundus mobility. Edit cities, years and
+     "now" (the filled dot) as your programme moves on.
+     =============================================================================== -->
+<section class="block" id="education">
+  <div class="wrap edu-grid">
+    <div>
+      <h2>Education</h2>
+      <h3 style="margin-top:16px">MSc in AI for Computer Vision (IPCVai)</h3>
+      <p class="muted" style="margin:2px 0 0">Erasmus Mundus joint master's with scholarship</p>
+      <ol class="route">
+        <li><span class="yr">2025</span><b>Madrid</b><span>Universidad Autónoma de Madrid</span></li>
+        <li class="now"><span class="yr">2026</span><b>Bordeaux</b><span>Université de Bordeaux, research at LaBRI</span></li>
+        <li><span class="yr">2027</span><b>Graduation</b><span>MSc completed</span></li>
+      </ol>
+      <h3>B.Tech in Computer Science and Engineering</h3>
+      <p class="muted" style="margin:2px 0 0">Vellore Institute of Technology, India, 2019 – 2023. CGPA 9.25 / 10</p>
+    </div>
+    <div>
+      <h2>Awards</h2>
+      <ul class="awards" style="margin-top:16px">
+        <li><h4>Top 5, IEEE ICIP 2026 Grand Challenge</h4><p class="muted">Urban object re-identification.</p></li>
+        <li><h4>3rd place, CISPA AI &amp; Cybersecurity Hackathon</h4><p class="muted">Barcelona. LLM watermark removal and inference attacks.</p></li>
+        <li><h4>Winner, AI Climate X Hackathon</h4><p class="muted">Nesprit and Incubator Zero.</p></li>
+        <li><h4>Product Director's Award, PepsiCo</h4><p class="muted">For cloud and MLOps cost reduction.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="muted" style="margin:0">Email is the fastest way to reach me.</p>
+    <div class="row">
+      <a href="mailto:biswarup1208mukherjee@gmail.com">biswarup1208mukherjee@gmail.com</a>
+      <a href="https://www.linkedin.com/in/biswarup-m">LinkedIn</a>
+      <a href="https://github.com/BiswarupMukherjee1">GitHub</a>
+      <a href="Biswarup_Mukherjee_CV.pdf">CV (PDF)</a>
+    </div>
+    <small>Based in Bordeaux, France. Last updated September 2026.</small>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+/* Calibration board: a 10 x 7 checkerboard with its 9 x 6 inner corners,
+   drawn the way OpenCV's drawChessboardCorners does (one colour per row). */
+(function(){
+  var cv=document.getElementById('board'); if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var coarse=window.matchMedia('(pointer: coarse)').matches;
+  if(coarse||reduce){document.getElementById('board-hint').textContent='A camera calibration target, with its detected corners.';}
+  var COLS=10, ROWS=7, ROWCOL=['#C8325B','#D8962A','#6E9B2F','#1F9A8A','#2E86C9','#2E4FC9'];
+  var W=560,H=460;
+  function size(){
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var r=cv.getBoundingClientRect(); W=r.width||560; H=r.height||460;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  var base={rx:.30,ry:-.50,rz:.08};
+  var cur={rx:0,ry:0,rz:0}, tgt={rx:base.rx,ry:base.ry,rz:base.rz};
+  var detect=reduce?1:0, t0=null, raf=null;
+  function proj(x,y){
+    var cz=Math.cos(cur.rz),sz=Math.sin(cur.rz);
+    var x1=x*cz-y*sz, y1=x*sz+y*cz;
+    var cx=Math.cos(cur.rx),sx=Math.sin(cur.rx);
+    var y2=y1*cx, z2=y1*sx;
+    var cy=Math.cos(cur.ry),sy=Math.sin(cur.ry);
+    var x3=x1*cy+z2*sy, z3=-x1*sy+z2*cy;
+    var f=Math.min(W,H*1.2)*1.12, z=z3+16;
+    return [W/2+f*x3/z, H/2+f*y2/z];
+  }
+  function path(p){ctx.beginPath();ctx.moveTo(p[0][0],p[0][1]);for(var i=1;i<p.length;i++)ctx.lineTo(p[i][0],p[i][1]);ctx.closePath();}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var hw=COLS/2, hh=ROWS/2, m=.55;
+    path([proj(-hw-m,-hh-m),proj(hw+m,-hh-m),proj(hw+m,hh+m),proj(-hw-m,hh+m)]);
+    ctx.fillStyle='#FFFFFF';ctx.fill();ctx.strokeStyle='#C9D8EC';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='#13294B';
+    for(var j=0;j<ROWS;j++)for(var i=0;i<COLS;i++){
+      if((i+j)%2) continue;
+      var x=-hw+i,y=-hh+j;
+      path([proj(x,y),proj(x+1,y),proj(x+1,y+1),proj(x,y+1)]);ctx.fill();
+    }
+    var n=(COLS-1)*(ROWS-1), shown=Math.floor(detect*n), prev=null, idx=0;
+    ctx.lineWidth=1.8;
+    for(var r=0;r<ROWS-1&&idx<shown;r++){
+      var col=ROWCOL[r%ROWCOL.length];
+      for(var q=0;q<COLS-1&&idx<shown;q++,idx++){
+        var p=proj(-hw+1+q,-hh+1+r);
+        ctx.strokeStyle=col;
+        if(prev){ctx.beginPath();ctx.moveTo(prev[0],prev[1]);ctx.lineTo(p[0],p[1]);ctx.stroke();}
+        ctx.beginPath();ctx.arc(p[0],p[1],4.5,0,Math.PI*2);ctx.stroke();
+        prev=p;
+      }
+    }
+  }
+  function tick(ts){
+    raf=null;
+    var moving=false;
+    ['rx','ry','rz'].forEach(function(a){var d=tgt[a]-cur[a]; if(Math.abs(d)>.0008){cur[a]+=d*.08;moving=true;} else cur[a]=tgt[a];});
+    if(detect<1){ if(t0===null) t0=ts; var e=ts-t0-700; if(e>0) detect=Math.min(1,e/1200); moving=true; }
+    draw();
+    if(moving) raf=requestAnimationFrame(tick);
+  }
+  function kick(){ if(!raf) raf=requestAnimationFrame(tick); }
+  size();
+  if(reduce){cur.rx=tgt.rx;cur.ry=tgt.ry;cur.rz=tgt.rz;draw();} else kick();
+  window.addEventListener('resize',function(){size();draw();});
+  if(!coarse&&!reduce){
+    window.addEventListener('pointermove',function(ev){
+      var nx=ev.clientX/window.innerWidth-.5, ny=ev.clientY/window.innerHeight-.5;
+      tgt.ry=base.ry+nx*.9; tgt.rx=base.rx+ny*.6; tgt.rz=base.rz+nx*.08; kick();
+    },{passive:true});
+  }
+})();
+/* Bars grow once when they scroll into view */
+(function(){
+  var charts=document.querySelectorAll('.chart');
+  if(!('IntersectionObserver' in window)){charts.forEach(function(c){c.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.3});
+  charts.forEach(function(c){io.observe(c);});
+})();
+/* Underline the section you are reading in the navigation */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var links={};
+  document.querySelectorAll('.nav a[href^="#"]').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting&&links[e.target.id]){
+      Object.keys(links).forEach(function(k){links[k].classList.remove('on');});
+      links[e.target.id].classList.add('on');
+    }
+  });},{rootMargin:'-40% 0px -55% 0px'});
+  Object.keys(links).forEach(function(id){var el=document.getElementById(id); if(el) io.observe(el);});
+})();
+</script>
+</body>
+</html>
